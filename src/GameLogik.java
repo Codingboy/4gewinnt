@@ -302,7 +302,150 @@ public class GameLogik
 				}
 			}
 		}
-		//TODO
+		int mode = 0;
+		for (int x=0, y=Settings.GameBoardHeight-Settings.StonesToWin; ;)
+		{
+			Player last = null;
+			int equalStones = 0;
+			for (int i=x,j=y; i<Settings.GameBoardWidth && j<Settings.GameBoardHeight; i++, j++)
+			{
+				Player p = getStones()[i][j];
+				if (p == null)
+				{
+					equalStones = 0;
+					last = p;
+					continue;
+				}
+				if (last == null)
+				{
+					equalStones = 1;
+					last = p;
+					continue;
+				}
+				else
+				{
+					if (p.equals(last))
+					{
+						equalStones++;
+					}
+					else
+					{
+						equalStones = 1;
+					}
+					last = p;
+				}
+				if (equalStones >= Settings.StonesToWin)
+				{
+					setWinner(p);
+					return true;
+				}
+			}
+			if (mode == 0)
+			{
+				if (y > 0)
+				{
+					y--;
+				}
+				else
+				{
+					mode++;
+				}
+			}
+			if (mode == 1)
+			{
+				if (x <= Settings.GameBoardWidth-Settings.StonesToWin)//TODO test
+				{
+					x++;
+				}
+				else
+				{
+					mode++;
+				}
+			}
+			if (mode == 2)
+			{
+				if (y <= Settings.GameBoardHeight-Settings.StonesToWin)//TODO test
+				{
+					y++;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		mode = 0;
+		for (int x=Settings.GameBoardWidth-1, y=Settings.GameBoardHeight-Settings.StonesToWin; ;)
+		{
+			Player last = null;
+			int equalStones = 0;
+			for (int i=x,j=y; i>=0 && j<Settings.GameBoardHeight; i--, j++)
+			{
+				Player p = getStones()[i][j];
+				if (p == null)
+				{
+					equalStones = 0;
+					last = p;
+					continue;
+				}
+				if (last == null)
+				{
+					equalStones = 1;
+					last = p;
+					continue;
+				}
+				else
+				{
+					if (p.equals(last))
+					{
+						equalStones++;
+					}
+					else
+					{
+						equalStones = 1;
+					}
+					last = p;
+				}
+				if (equalStones >= Settings.StonesToWin)
+				{
+					setWinner(p);
+					return true;
+				}
+			}
+			if (mode == 0)
+			{
+				if (y > 0)
+				{
+					y--;
+				}
+				else
+				{
+					mode++;
+				}
+			}
+			if (mode == 1)
+			{
+				if (x >= Settings.StonesToWin)//TODO test
+				{
+					x--;
+				}
+				else
+				{
+					mode++;
+				}
+			}
+			if (mode == 2)
+			{
+				if (y <= Settings.GameBoardHeight-Settings.StonesToWin)//TODO test
+				{
+					y++;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
 		return false;
 	}
 	
@@ -417,7 +560,7 @@ public class GameLogik
 				incrementGedöns();
 				return true;
 			}
-			if (i == Settings.GameBoardHeight)
+			if (i == Settings.GameBoardHeight-1)
 			{
 				set(x, i, null);
 				incrementGedöns();
