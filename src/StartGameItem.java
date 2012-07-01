@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenuItem;
 
@@ -11,6 +12,7 @@ public class StartGameItem extends JMenuItem
 	QuitGameItem quitGameItem;
 	UndoItem undoItem;
 	VoteDrawItem voteDrawItem;
+	List<ControlButton> buttons;
 	
 	public StartGameItem(final GameLogik gameLogik)
 	{
@@ -27,7 +29,7 @@ public class StartGameItem extends JMenuItem
 				voteDrawItem.setEnabled(true);
 				setEnabled(false);
 				undoItem.setEnabled(true);
-				new StartGameFrame(gameLogik);
+				new StartGameFrame(gameLogik, buttons);
 			}
 		});
 	}

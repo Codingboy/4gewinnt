@@ -41,9 +41,11 @@ public class StartGameFrame extends JFrame
 	JButton abort;
 	int addCounter;
 	JPanel panel;
+	List<ControlButton> buttons;
 	
-	public StartGameFrame(final GameLogik gameLogik)
+	public StartGameFrame(final GameLogik gameLogik, final List<ControlButton> buttons)
 	{
+		this.buttons = buttons;
 		this.addCounter = 0;
 		this.gameLogik = gameLogik;
 		this.players = new JComboBox(Settings.players.toArray());
@@ -98,6 +100,10 @@ public class StartGameFrame extends JFrame
 					map.put(p, Integer.valueOf(playerPanel.get(i).team.getText()));
 				}
 				gameLogik.start(map, Settings.GameBoardWidth, Settings.GameBoardHeight);
+				for (int i=0; i<buttons.size(); i++)
+				{
+					buttons.get(i).setEnabled(true);
+				}
 				dispose();
 			}
 		});

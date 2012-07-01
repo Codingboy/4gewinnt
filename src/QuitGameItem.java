@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JMenuItem;
 
@@ -11,6 +12,7 @@ public class QuitGameItem extends JMenuItem
 	StartGameItem startGameItem;
 	UndoItem undoItem;
 	VoteDrawItem voteDrawItem;
+	List<ControlButton> buttons;
 	
 	public QuitGameItem(GameLogik gameLogik)
 	{
@@ -22,6 +24,10 @@ public class QuitGameItem extends JMenuItem
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
+				for (int i=0; i<buttons.size(); i++)
+				{
+					buttons.get(i).setEnabled(false);
+				}
 				startGameItem.setEnabled(true);
 				restartGameItem.setEnabled(false);
 				setEnabled(false);
