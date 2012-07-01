@@ -13,9 +13,11 @@ public class StartGameItem extends JMenuItem
 	UndoItem undoItem;
 	VoteDrawItem voteDrawItem;
 	List<ControlButton> buttons;
+	StartGameItem thiss;//FIXME workaround
 	
 	public StartGameItem(final GameLogik gameLogik)
 	{
+		this.thiss = this;
 		this.gameLogik = gameLogik;
 		setText("start");
 		setEnabled(true);
@@ -24,12 +26,7 @@ public class StartGameItem extends JMenuItem
 			@Override
 			public void actionPerformed(ActionEvent arg0)
 			{
-				quitGameItem.setEnabled(true);
-				restartGameItem.setEnabled(true);
-				voteDrawItem.setEnabled(true);
-				setEnabled(false);
-				undoItem.setEnabled(true);
-				new StartGameFrame(gameLogik, buttons);
+				new StartGameFrame(gameLogik, buttons, restartGameItem, quitGameItem, undoItem, voteDrawItem, thiss);
 			}
 		});
 	}

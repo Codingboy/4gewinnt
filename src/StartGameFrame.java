@@ -41,10 +41,21 @@ public class StartGameFrame extends JFrame
 	JButton abort;
 	int addCounter;
 	JPanel panel;
+	
+	RestartGameItem restartGameItem;
+	QuitGameItem quitGameItem;
+	UndoItem undoItem;
+	VoteDrawItem voteDrawItem;
+	StartGameItem startGameItem;
 	List<ControlButton> buttons;
 	
-	public StartGameFrame(final GameLogik gameLogik, final List<ControlButton> buttons)
+	public StartGameFrame(final GameLogik gameLogik, final List<ControlButton> buttons, final RestartGameItem restartGameItem, final QuitGameItem quitGameItem, final UndoItem undoItem, final VoteDrawItem voteDrawItem, final StartGameItem startGameItem)
 	{
+		this.restartGameItem = restartGameItem;
+		this.quitGameItem = quitGameItem;
+		this.undoItem = undoItem;
+		this.voteDrawItem = voteDrawItem;
+		this.startGameItem = startGameItem;
 		this.buttons = buttons;
 		this.addCounter = 0;
 		this.gameLogik = gameLogik;
@@ -104,6 +115,11 @@ public class StartGameFrame extends JFrame
 				{
 					buttons.get(i).setEnabled(true);
 				}
+				quitGameItem.setEnabled(true);
+				restartGameItem.setEnabled(true);
+				voteDrawItem.setEnabled(true);
+				startGameItem.setEnabled(false);
+				undoItem.setEnabled(true);
 				dispose();
 			}
 		});

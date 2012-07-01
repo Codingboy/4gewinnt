@@ -70,7 +70,6 @@ public class MainWindow extends JFrame
 		panel.add(labels, BorderLayout.NORTH);
 		panel.add(rootPanel, BorderLayout.CENTER);
 		add(panel);
-		//add(rootPanel);
 
 		setTitle("4 Gewinnt!");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
